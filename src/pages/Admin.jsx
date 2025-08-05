@@ -5,7 +5,7 @@ function Admin() {
 
   useEffect(() => {
     // Replace the URL below with your deployed backend URL
-    fetch("https://your-backend.onrender.com/applicants")
+    fetch("https://mern-backend-8asj.onrender.com/api/applicants")
       .then((res) => res.json())
       .then((data) => {
         setApplicants(data);
