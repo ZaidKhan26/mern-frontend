@@ -5,7 +5,14 @@ function Applicants() {
   const [applicants, setApplicants] = useState([]);
 
   useEffect(() => {
-    axios.get("https://mern-backend-8asj.onrender.com/api/applicants")
+    const token = import.meta.env.VITE_ADMIN_TOKEN; // read token from env
+
+    axios
+      .get("https://mern-backend-8asj.onrender.com/api/applicants", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         console.log("Fetched applicants:", res.data);
         if (Array.isArray(res.data)) {
@@ -27,9 +34,6 @@ function Applicants() {
         applicants.map((applicant) => (
           <div key={applicant._id} className="border p-2 mb-2 rounded">
             <p><strong>Name:</strong> {applicant.name}</p>
-            {/* <p><strong>Email:</strong> {applicant.email}</p> */}
-            {/* <p><strong>College:</strong> {applicant.college}</p> */}
-            {/* <p><strong>Phone:</strong> {applicant.phone}</p> */}
             <p><strong>Skills:</strong> {applicant.skills}</p>
             <p><strong>Motivation:</strong> {applicant.motivation}</p>
           </div>
