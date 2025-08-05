@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const ADMIN_PASSWORD = "admin123"; // 🔐 Change this to something stronger
+const ADMIN_PASSWORD = "admin123"; // Used for UI login only
+const ADMIN_TOKEN = "supersecrettoken123"; // Must match backend `.env`
 
 function Admin() {
   const [applicants, setApplicants] = useState([]);
@@ -8,10 +9,28 @@ function Admin() {
   const [inputPassword, setInputPassword] = useState("");
 
   const fetchApplicants = () => {
-    fetch("https://mern-backend-8asj.onrender.com/api/applicants")
-      .then((res) => res.json())
-      .then((data) => setApplicants(data))
-      .catch((error) => console.error("Error fetching applicants:", error));
+    fetch("https://mern-backend-8asj.onrender.com/api/applicants", {
+      headers: {
+        Authorization: `Bearer ${ADMIN_TOKEN}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Unauthorized or failed fetch");
+        return res.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setApplicants(data);
+        } else {
+          console.error("Expected array but got:", data);
+          setApplicants([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching applicants:", error);
+        alert("Failed to fetch applicants. Check token or backend.");
+        setApplicants([]);
+      });
   };
 
   useEffect(() => {
@@ -27,12 +46,16 @@ function Admin() {
     try {
       const res = await fetch(`https://mern-backend-8asj.onrender.com/api/applicants/${id}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${ADMIN_TOKEN}`,
+        },
       });
+
       if (res.ok) {
         alert("Applicant deleted successfully.");
         fetchApplicants(); // refresh the list
       } else {
-        alert("Failed to delete applicant.");
+        alert("Failed to delete applicant. Check token or backend.");
       }
     } catch (err) {
       console.error("Error deleting applicant:", err);
