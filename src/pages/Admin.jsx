@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const ADMIN_PASSWORD = "admin123"; // Used for UI login only
+const ADMIN_PASSWORD = "zaid123"; // Used for UI login only
 const ADMIN_TOKEN = "supersecrettoken123"; // Must match backend `.env`
 
 function Admin() {
