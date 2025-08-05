@@ -6,6 +6,7 @@ function Register() {
     name: "",
     email: "",
     phone: "",
+    college: "",
     skills: "",
     motivation: "",
   });
@@ -20,10 +21,10 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, email, phone, skills, motivation } = formData;
+    const { name, email, phone, college, skills, motivation } = formData;
 
     // Basic validation
-    if (!name || !email || !phone || !skills || !motivation) {
+    if (!name || !email || !phone || !college || !skills || !motivation) {
       alert("Please fill in all fields.");
       return;
     }
@@ -50,6 +51,7 @@ function Register() {
           name: "",
           email: "",
           phone: "",
+          college: "",
           skills: "",
           motivation: "",
         });
@@ -111,6 +113,18 @@ function Register() {
               name="skills"
               required
               value={formData.skills}
+              onChange={handleChange}
+              className="w-full p-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-1 font-medium">College</label>
+            <input
+              type="text"
+              name="college"
+              required
+              value={formData.college}
               onChange={handleChange}
               className="w-full p-2 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
             />

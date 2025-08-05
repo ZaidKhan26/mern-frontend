@@ -28,7 +28,10 @@ function Applicants() {
           <div key={applicant._id} className="border p-2 mb-2 rounded">
             <p><strong>Name:</strong> {applicant.name}</p>
             <p><strong>Email:</strong> {applicant.email}</p>
-            {/* <p><strong>College:</strong> {applicant.college}</p> */}
+            <p><strong>College:</strong> {applicant.college}</p>
+            <p><strong>Phone:</strong> {applicant.phone}</p>
+            <p><strong>Skills:</strong> {applicant.skills}</p>
+            <p><strong>Motivation:</strong> {applicant.motivation}</p>
           </div>
         ))
       ) : (
