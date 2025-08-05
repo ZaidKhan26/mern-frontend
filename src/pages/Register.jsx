@@ -44,7 +44,7 @@ function Register() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/applicants", formData); // 🔁 Replace with your actual backend URL
+      const res = await axios.post("https://mern-backend-8asj.onrender.com/api/applicants", formData); // 🔁 Replace with your actual backend URL
       if (res.status === 200 || res.status === 201) {
         alert("Application submitted successfully!");
         setFormData({
