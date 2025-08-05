@@ -27,6 +27,9 @@ function Admin() {
               <h2 className="text-xl font-semibold">{applicant.name}</h2>
               <p>Email: {applicant.email}</p>
               <p>College: {applicant.college}</p>
+              <p>Phone: {applicant.phone}</p>
+              <p>Skills: {applicant.skills}</p>
+              <p>Motivation: {applicant.motivation}</p>
             </div>
           ))}
         </div>
