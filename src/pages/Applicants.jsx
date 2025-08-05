@@ -5,7 +5,7 @@ function Applicants() {
   const [applicants, setApplicants] = useState([]);
 
   useEffect(() => {
-    const token = import.meta.env.VITE_ADMIN_TOKEN; // read token from env
+    const token = import.meta.env.ADMIN_TOKEN; // read token from env
 
     axios
       .get("https://mern-backend-8asj.onrender.com/api/applicants", {
